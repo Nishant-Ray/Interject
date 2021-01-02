@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<!-- CSS stylesheets -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/static.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+		<!-- JavaScripts -->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/primary.js') }}"></script>
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <!-- Icons -->
+		<script src="https://kit.fontawesome.com/deef0bf4ed.js" crossorigin="anonymous"></script>
+		
+		<title>Interject</title>
+	</head>
+
+	<body style="overflow: hidden;">
+
+        <div id="navbar">
+            <a class="navlink" href="/settings">Settings</a>
+            <img class="logo-title" src="/logo.png"></img>
+        </div>
+
+        <div id="wrap">
+            <div id="offline-card" onclick="window.open('/topics:offline', '_self')">
+                <h1 style="font-size: 72px;">Offline Debate</h1>
+                <h3 style="font-family: 'Nunito', sans-serif; font-weight: 600;">Practice with an AI-powered debate chatbot!</h3>
+                <br><br>
+                <a class="debate-button" style="color: white; margin-left: 125px;">Debate now</a>
+            </div>
+
+            <div id="online-card" onclick="window.open('/topics:online', '_self')">
+                <br><br>
+                <h1 style="font-size: 72px;">Online Debate</h1>
+                <h3 style="font-family: 'Nunito', sans-serif; font-weight: 600;">Test your skills against a real online<br>opponent!</h1>
+                <br><br>
+                <a class="debate-button" style="color: white; margin-left: 125px;">Debate now</a>
+            </div>
+        </div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" class="wave" viewBox="0 0 1440 320">
+            <path fill="#016A90" fill-opacity="1" d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+
+    </body>
+</html>

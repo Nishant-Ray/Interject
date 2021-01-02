@@ -1,0 +1,37 @@
+#navbar {
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 20px 0px 20px 20px;
+    font-family: 'Heebo', sans-serif;
+    position: relative;
+    padding-left: 1150px;
+    z-index: 2;
+}
+
+.navlink {
+    color: rgb(190, 197, 233);
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 30px;
+    margin-right: 25px;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.navlink:hover {
+    color: white;
+}
+
+#wrap {
+    font-family: 'Nunito', sans-serif;
+    background-color: white;
+    width: 80%;
+    height: 550px;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+}

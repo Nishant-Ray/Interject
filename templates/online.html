@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<!-- CSS stylesheets -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/static.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/online.css') }}">
+		<link rel="stylesheet" href="../static/css/online.css">
+		<!-- JavaScripts -->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/primary.js') }}"></script>
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <!-- Icons -->
+		<script src="https://kit.fontawesome.com/deef0bf4ed.js" crossorigin="anonymous"></script>
+		
+		<title>Interject</title>
+	</head>
+
+	<body style="background-color: rgb(1, 106, 144);">
+
+        <div id="navbar">
+            <a class="navlink" href="/settings">Settings</a>
+            <img class="logo-title" src="/logo.png"></img>
+        </div>
+
+		<div id="opponent-div">
+			<br><br>
+			<h1 id="opponent-text"><span style="font-family: 'Nunito', sans-serif; font-size: 14px; color: rgb(200, 200, 200);">YOUR OPPONENT</span><br>{{ session["currentUser"]["queue"][4]["name"] }}</h1>
+		</div>
+
+		<div id="question-div">
+			<br><br>
+			<h1 id="question-text">{{ currentUser["queue"][0] }}</h1>
+		</div>
+
+		<br><br>
+        <div id="wrap">
+            
+            <div id="left">
+				{% if currentUser["queue"][1] == True %}
+				
+					<form>
+						<div class="form-group">
+							<label>Post your argument</label>
+							<textarea name="yes-comment" class="form-control" rows="3"></textarea>
+						</div>
+						<button class="submit-button" type="submit"><a class="submit-link" style="color: white;">Post</a></button>
+					</form>
+
+				{% else %}
+
+					<div class="post">
+						<h3 class="post-author">Kevin Lewis<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+						
+						<div class="reply-div">
+							<h2 class="reply-title">Reply to Kevin Lewis</h2>
+							<form style="text-align: center;">
+								<div class="form-group">
+									<textarea name="reply" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+								</div>
+								<button class="submit-button" type="submit"><a class="submit-link" style="color: white;">Post</a></button>
+							</form>
+						</div>
+
+					</div>
+
+					<div class="post">
+						<h3 class="post-author">Kevin Lewis<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+					
+						<div class="reply-div">
+							<div class="reply">
+								<h3 class="reply-author">You<span class="post-time">9:22 AM</span></h3>
+								<h2 class="reply-content">I understand your point of view, but you're just plainly wrong.</h2>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="post">
+						<h3 class="post-author">Kevin Lewis<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+						
+						<div class="reply-div">
+							<div class="reply">
+								<h3 class="reply-author">You<span class="post-time">9:22 AM</span></h3>
+								<h2 class="reply-content">I understand your point of view, but you're just plainly wrong.</h2>
+							</div>
+
+							<div class="reply">
+								<h3 class="reply-author">Kevin Lewis<span class="post-time">9:36 AM</span></h3>
+								<h2 class="reply-content">Leave me in peace!</h2>
+							</div>
+						</div>
+					</div>
+
+					<div class="post">
+						<h3 class="post-author">Kevin Lewis<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+					</div>
+
+					<br><br><br><br><br><br>
+					<h1 style="font-weight: 200;">Your opponent is posting their argument...</h1>
+
+				{% endif %}
+			</div>
+
+			<div id="right">
+				{% if currentUser["queue"][1] == False %}
+
+					<div class="post">
+						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+					</div>
+
+					<div class="post">
+						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+					</div>
+
+					<div class="post">
+						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+					</div>
+
+					<div class="post">
+						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+					</div>
+
+					<!-- <form>
+						<div class="form-group">
+							<label style="font-size: 32px; font-weight: 600;">Post your argument:</label>
+							<textarea name="no-comment" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+						</div>
+						<button class="submit-button" type="submit"><a class="submit-link" style="color: white;">Post</a></button>
+					</form> -->
+				{% else %}
+
+					<br><br><br><br><br><br>
+					<h1 style="font-weight: 200;">Your opponent is posting their argument...</h1>
+
+				{% endif %}
+			</div>
+
+        </div>
+
+    </body>
+</html>

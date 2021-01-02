@@ -1,0 +1,103 @@
+#navbar {
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 20px 0px 20px 20px;
+    font-family: 'Heebo', sans-serif;
+    position: relative;
+    padding-left: 1150px;
+    z-index: 2;
+}
+
+.navlink {
+    color: rgb(146, 155, 197);
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 30px;
+    margin-right: 25px;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+#wrap {
+    height: 320px;
+    font-family: 'Heebo', sans-serif;
+}
+
+#offline-card {
+    display: inline-block;
+    position: relative;
+    width: 55%;
+    height: 550px;
+    padding: 50px;
+    padding-left: 250px;
+    padding-top: 150px;
+    margin-left: -175px;
+    background-color: rgb(0, 174, 255);
+    border-radius: 20px;
+    transform: translate(50px, -150px) rotate(20deg);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 0;
+    transition: 0.2s;
+}
+
+#offline-card:hover {
+    transform: translate(100px, -130px) rotate(20deg);
+    box-shadow: 0 20px 20px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+#offline-card:hover + #online-card {
+    transform: translate(80px, 160px) rotate(20deg);
+}
+
+#online-card {
+    display: inline-block;
+    position: absolute;
+    width: 60%;
+    height: 540px;
+    padding: 50px;
+    margin-left: 200px;
+    background-color: rgb(248, 112, 112);
+    border-radius: 20px;
+    transform: translate(30px, 120px) rotate(20deg);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 0;
+    transition: 0.2s;
+}
+
+#online-card:hover {
+    cursor: pointer;
+    transform: translate(-20px, 80px) rotate(20deg);
+    box-shadow: 0 20px 20px 20px rgba(0, 0, 0, 0.2);
+}
+
+#online-card:hover + #offline-card {
+    transform: translate(0px, -250px) rotate(20deg);
+}
+
+.wave {
+    z-index: 2; 
+    pointer-events : none;
+    position: relative;
+}
+
+.wave:hover {
+    background-color: green;
+}
+
+.debate-button {
+    background-color: rgb(1, 106, 144);
+    color: white;
+    border: none;
+    font-family: 'Heebo', sans-serif;
+    width: 200px;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-size: 24px;
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+}
+
+.debate-button:hover {
+    font-weight: 700;
+}

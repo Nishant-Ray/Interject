@@ -1,0 +1,48 @@
+.logo-title {
+    width: 150px;
+    margin: 0px 0px 15px 0px;
+    padding: 0px;
+    transition: all 0.3s;
+}
+
+.logo-title:hover {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    width: 157.5px;
+    margin: 0px -7.5px 12px 0px;
+    cursor: pointer;
+}
+
+#navbar {
+    color: white;
+    background-color: rgb(255, 255, 255);
+    padding: 20px 0px 20px 20px;
+    font-family: 'Heebo', sans-serif;
+    position: relative;
+    z-index: 2;
+}
+
+.navlink {
+    color: rgb(146, 155, 197);
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 30px;
+    margin-left: 25px;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.navlink:hover {
+    color: rgb(1, 106, 144);
+    font-size: 26px;
+    margin-left: 19px;
+    text-decoration: none;
+}
+
+.active {
+    color: rgb(196, 60, 196);
+}
+
+.active:hover {
+    color: white;
+    background-color: rgba(196, 60, 196, 0.5);
+}

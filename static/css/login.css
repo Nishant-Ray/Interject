@@ -1,0 +1,28 @@
+#wrap {
+    font-family: 'Nunito', sans-serif;
+    background-color: white;
+    width: 60%;
+    height: 500px;
+    margin: auto;
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 50px;
+    text-align: center;
+}
+
+.submit-button {
+    background-color: rgb(1, 106, 144);
+    border: none;
+    font-family: 'Heebo', sans-serif;
+    width: 200px;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-size: 24px;
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+}
+
+.submit-button:hover {
+    width: 210px;
+    font-weight: 700;
+}

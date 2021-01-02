@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<!-- CSS stylesheets -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/static.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/findplayer.css') }}">
+		<!-- JavaScripts -->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/primary.js') }}"></script>
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <!-- Icons -->
+		<script src="https://kit.fontawesome.com/deef0bf4ed.js" crossorigin="anonymous"></script>
+		
+		<title>Interject</title>
+	</head>
+
+	<body style="background-color: rgb(1, 106, 144);" onload="checkQueue()">
+
+        <div id="navbar">
+            <a class="navlink" href="/settings">Settings</a>
+            <img class="logo-title" src="/logo.png"></img>
+        </div>
+
+        <div id="wrap">
+            
+            <h1 style="font-size: 48px; font-family: 'Heebo', sans-serif;">{{ currentUser["queue"][0] }}</h1>
+            <br><br><br>
+            
+            <div id="loader"></div>
+            <h1 id="load-text">Finding opponent...</h1>
+            <br><br><br><br><br><br>
+            <a id="cancel" onclick="cancelQueue()">Cancel</a>
+
+        </div>
+
+    </body>
+</html>
