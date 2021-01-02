@@ -192,7 +192,7 @@ def online():
         updateCurrentUser()
         
         opponentArg = getCounterArg() #session["currentUser"]["queue"][4]["queue"][5]
-        print("opponent: " + opponentArg)
+        #print("opponent: " + opponentArg)
 
         return render_template("online.html", argument=session["currentUser"]["queue"][5], counterArg=opponentArg, oppName=session["currentUser"]["queue"][4]["name"])
     else:
@@ -214,12 +214,23 @@ def online():
 
         return render_template("online.html")
 
-@app.route("/offline:<side>:<q>")
+@app.route("/offline:<side>:<q>", methods=["POST", "GET"])
 def offline(side, q):
     global users
 
     if "currentUser" not in session:
         return redirect(url_for('login'))
+
+    elif request.method == "POST":
+
+        restoreCurrentUser()
+        session["currentUser"]["queue"][5] = request.form["argument"]
+        updateCurrentUser()
+        
+        opponentArg = "DebateBot argument" #debateBot.talkWithDebateBot(request.form["argument"])
+
+        return render_template("offline.html", argument=session["currentUser"]["queue"][5], counterArg=opponentArg)
+
     else:
         if side == "yes":
             session["currentUser"]["queue"][1] = True

@@ -25,13 +25,190 @@
 #wrap {
     font-family: 'Nunito', sans-serif;
     background-color: white;
-    width: 80%;
-    height: 550px;
+    width: 90%;
+    height: 500px;
     margin: auto;
     text-align: center;
-    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1); */
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
     border-radius: 10px;
-    padding-top: 50px;
-    padding-bottom: 50px;
     text-align: center;
+}
+
+#question-div {
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    transform: translate(0px, -80px);
+}
+
+#question-text {
+    font-size: 48px;
+    font-weight: 800;
+    font-family: 'Heebo', sans-serif;
+    color: white;
+}
+
+#opponent-div {
+    position: absolute;
+    margin-top: -95px;
+    margin-left: 75px;
+}
+
+#opponent-text {
+    font-family: 'Heebo', sans-serif;
+    color: white;
+    font-size: 32px;
+}
+
+#left {
+    width: 50%;
+    height: 100%;
+    float: left;
+    background-color: rgb(146, 214, 146);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 50px;
+    overflow-y: scroll;
+}
+
+#right {
+    width: 50%;
+    height: 100%;
+    float: left;
+    background-color:  rgb(219, 118, 118);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 50px;
+    overflow-y: scroll;
+}
+
+.submit-button {
+    background-color: rgb(1, 106, 144);
+    border: none;
+    font-family: 'Heebo', sans-serif;
+    width: 120px;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-size: 20px;
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    transition: ease-in-out 0.2s;
+}
+
+.submit-button:hover {
+    width: 130px;
+    font-weight: 700;
+}
+
+.opponent-wait {
+    font-weight: 200;
+}
+
+.post {
+    width: 100%;
+    text-align: left;
+    padding: 30px 40px;
+    margin-bottom: 50px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: ease-in-out 0.2s;
+}
+
+#userPost { 
+    display: none;
+}
+
+#opponentPost {
+    display: none;
+}
+
+.post:hover {
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+.post-author {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    color:  rgb(1, 106, 144);
+}
+
+.post-time {
+    padding-left: 10px;
+    color: rgb(179, 179, 179);
+    text-transform: uppercase;
+}
+
+.post-content {
+    font-family: 'Heebo', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: rgb(52, 63, 65);
+}
+
+.post-reply {
+    padding-top: 10px;
+    font-size: 22px;
+    color: rgb(179, 179, 179);
+    transition: all 0.2s;
+}
+
+.post-reply:hover {
+    color: rgb(81, 101, 114);
+    cursor: pointer;
+}
+
+.reply-div {
+    background-color: rgb(242, 242, 242);
+    margin-left: -40px;
+    margin-right: -40px;
+
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 0px;
+
+    /* margin-bottom: -30px;
+    margin-top: 20px;
+    padding: 30px 40px; */
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.make-reply {
+    border-top: 1px solid gray;
+    padding-top: 20px;
+    display: none;
+}
+
+.reply-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color:rgb(81, 101, 114);
+    margin-bottom: 20px;
+}
+
+.reply {
+    margin-bottom: 30px;
+}
+
+.reply-author {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    color:  rgb(1, 106, 144);
+}
+
+.reply-time {
+    padding-left: 10px;
+    color: rgb(179, 179, 179);
+    text-transform: uppercase;
+}
+
+.reply-content {
+    font-family: 'Heebo', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: rgb(71, 83, 85);
 }

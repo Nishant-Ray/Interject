@@ -92,7 +92,7 @@ def chat():
 		print(random.choice(responses))
 
 def talkWithDebateBot(input):
-	results = model.predict([bag_of_words(inp, words)])
+	results = model.predict([bag_of_words(input, words)])
 		results_index = numpy.argmax(results)
 		tag = labels[results_index]
 		for tg in data["intents"]:

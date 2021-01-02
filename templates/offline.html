@@ -20,21 +20,146 @@
 		<title>Interject</title>
 	</head>
 
-	<body style="background-color: rgb(1, 106, 144);">
+	<body style="background-color: rgb(1, 106, 144);" onload="loadArguments('{{ argument }}', '{{ counterArg }}', 'DebateBot')">
 
         <div id="navbar">
             <a class="navlink" href="/settings">Settings</a>
             <img class="logo-title" src="/logo.png"></img>
         </div>
 
+		<div id="opponent-div">
+			<br><br>
+			<h1 id="opponent-text"><span style="font-family: 'Nunito', sans-serif; font-size: 14px; color: rgb(200, 200, 200);">YOUR OPPONENT</span><br>DebateBot</h1>
+		</div>
+
+		<div id="question-div">
+			<br><br>
+			<h1 id="question-text">{{ currentUser["queue"][0] }}</h1>
+		</div>
+
+		<br><br>
         <div id="wrap">
             
-            <h1 style="font-size: 48px; font-family: 'Heebo', sans-serif;">{{ currentUser["queue"][0] }}</h1>
-            <br><br><br>
-            
-            <h1>Chatbot</h1>
+            <div id="left">
+				{% if currentUser["queue"][1] == True %}
+				
+					<form class="argument-form" action="{{ url_for('offline', side=currentUser["queue"][1], q=currentUser["queue"][0]) }}" method="post">
+						<div class="form-group">
+							<label style="font-size: 32px; font-weight: 400;">Post your argument:</label>
+							<textarea name="argument" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+						</div>
+						<button class="submit-button" type="submit"><a class="submit-link" style="color: white;">Post</a></button>
+					</form>
+
+					<div class="post" id="userPost">
+						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply" onclick="replyToPost(this)"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+						
+						<div class="reply-div">
+							<div class="make-reply">
+								<h2 class="reply-title">Reply to yourself</h2>
+								<div class="reply-form" style="text-align: center;">
+									<div class="form-group">
+										<textarea name="reply" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+									</div>
+									<button class="submit-button" type="submit" onclick="submitReply(this)"><a class="submit-link" style="color: white;">Post</a></button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				{% else %}
+
+					<h1 class="opponent-wait"><br><br><br>DebateBot is posting their argument...</h1>
+
+					<div class="post" id="opponentPost" style="display: none;">
+						<h3 class="post-author">DebateBot<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply" onclick="replyToPost(this)"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+						
+						<div class="reply-div">
+							<div class="make-reply">
+								<h2 class="reply-title">Reply to DebateBot</h2>
+								<div class="reply-form" style="text-align: center;">
+									<div class="form-group">
+										<textarea name="reply" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+									</div>
+									<button class="submit-button" type="submit" onclick="submitReply(this)"><a class="submit-link" style="color: white;">Post</a></button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				{% endif %}
+			</div>
+
+			<div id="right">
+				{% if currentUser["queue"][1] == False %}
+
+					<form class="argument-form" action="{{ url_for('offline') }}" method="post">
+						<div class="form-group">
+							<label style="font-size: 32px; font-weight: 400;">Post your argument:</label>
+							<textarea name="argument" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+						</div>
+						<button class="submit-button" type="submit"><a class="submit-link" style="color: white;">Post</a></button>
+					</form>
+
+					<div class="post" id="userPost">
+						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply" onclick="replyToPost(this)"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+						
+						<div class="reply-div">
+							<div class="make-reply">
+								<h2 class="reply-title">Reply to yourself</h2>
+								<div class="reply-form" style="text-align: center;">
+									<div class="form-group">
+										<textarea name="reply" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+									</div>
+									<button class="submit-button" type="submit" onclick="submitReply(this)"><a class="submit-link" style="color: white;">Post</a></button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				{% else %}
+
+					<h1 class="opponent-wait"><br><br><br>DebateBot is posting their argument...</h1>
+
+					<div class="post" id="opponentPost" style="display: none;">
+						<h3 class="post-author">DebateBot<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply" onclick="replyToPost(this)"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+						
+						<div class="reply-div">
+							<div class="make-reply">
+								<h2 class="reply-title">Reply to DebateBot</h2>
+								<div class="reply-form" style="text-align: center;">
+									<div class="form-group">
+										<textarea name="reply" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+									</div>
+									<button class="submit-button" type="submit" onclick="submitReply(this)"><a class="submit-link" style="color: white;">Post</a></button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				{% endif %}
+			</div>
 
         </div>
+
+		<template>
+			<div class="reply">
+				<h3 class="reply-author">[Reply author]<span class="reply-time">lol the time</span></h3>
+				<h2 class="reply-content">[Reply content]</h2>
+			</div>
+		</template>
 
     </body>
 </html>
