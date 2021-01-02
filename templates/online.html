@@ -21,7 +21,7 @@
 		<title>Interject</title>
 	</head>
 
-	<body style="background-color: rgb(1, 106, 144);">
+	<body style="background-color: rgb(1, 106, 144);" onload="loadArguments('{{ argument }}', '{{ counterArg }}', '{{ oppName }}')">
 
         <div id="navbar">
             <a class="navlink" href="/settings">Settings</a>
@@ -44,73 +44,55 @@
             <div id="left">
 				{% if currentUser["queue"][1] == True %}
 				
-					<form>
+					<form class="argument-form" action="{{ url_for('online') }}" method="post">
 						<div class="form-group">
-							<label>Post your argument</label>
-							<textarea name="yes-comment" class="form-control" rows="3"></textarea>
+							<label style="font-size: 32px; font-weight: 400;">Post your argument:</label>
+							<textarea name="argument" class="form-control" rows="3" style="font-size: 22px;"></textarea>
 						</div>
 						<button class="submit-button" type="submit"><a class="submit-link" style="color: white;">Post</a></button>
 					</form>
 
+					<div class="post" id="userPost">
+						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply" onclick="replyToPost(this)"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+						
+						<div class="reply-div">
+							<div class="make-reply">
+								<h2 class="reply-title">Reply to yourself</h2>
+								<div class="reply-form" style="text-align: center;">
+									<div class="form-group">
+										<textarea name="reply" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+									</div>
+									<button class="submit-button" type="submit" onclick="submitReply(this)"><a class="submit-link" style="color: white;">Post</a></button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
 				{% else %}
 
-					<div class="post">
-						<h3 class="post-author">Kevin Lewis<span class="post-time">8:52 AM</span></h3>
+					<h1 class="opponent-wait"><br><br><br>Your opponent is posting their argument...</h1>
+
+					<div class="post" id="opponentPost" style="display: none;">
+						<h3 class="post-author">{{ currentUser["queue"][4]["name"] }}<span class="post-time">8:52 AM</span></h3>
 						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
-						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+						<h3 class="post-reply" onclick="replyToPost(this)"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
 						
 						<div class="reply-div">
-							<h2 class="reply-title">Reply to Kevin Lewis</h2>
-							<form style="text-align: center;">
-								<div class="form-group">
-									<textarea name="reply" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+							<div class="make-reply">
+								<h2 class="reply-title">Reply to {{ currentUser["queue"][4]["name"] }}</h2>
+								<div class="reply-form" style="text-align: center;">
+									<div class="form-group">
+										<textarea name="reply" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+									</div>
+									<button class="submit-button" type="submit" onclick="submitReply(this)"><a class="submit-link" style="color: white;">Post</a></button>
 								</div>
-								<button class="submit-button" type="submit"><a class="submit-link" style="color: white;">Post</a></button>
-							</form>
-						</div>
-
-					</div>
-
-					<div class="post">
-						<h3 class="post-author">Kevin Lewis<span class="post-time">8:52 AM</span></h3>
-						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
-						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
-					
-						<div class="reply-div">
-							<div class="reply">
-								<h3 class="reply-author">You<span class="post-time">9:22 AM</span></h3>
-								<h2 class="reply-content">I understand your point of view, but you're just plainly wrong.</h2>
 							</div>
 						</div>
 
 					</div>
-
-					<div class="post">
-						<h3 class="post-author">Kevin Lewis<span class="post-time">8:52 AM</span></h3>
-						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
-						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
-						
-						<div class="reply-div">
-							<div class="reply">
-								<h3 class="reply-author">You<span class="post-time">9:22 AM</span></h3>
-								<h2 class="reply-content">I understand your point of view, but you're just plainly wrong.</h2>
-							</div>
-
-							<div class="reply">
-								<h3 class="reply-author">Kevin Lewis<span class="post-time">9:36 AM</span></h3>
-								<h2 class="reply-content">Leave me in peace!</h2>
-							</div>
-						</div>
-					</div>
-
-					<div class="post">
-						<h3 class="post-author">Kevin Lewis<span class="post-time">8:52 AM</span></h3>
-						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
-						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
-					</div>
-
-					<br><br><br><br><br><br>
-					<h1 style="font-weight: 200;">Your opponent is posting their argument...</h1>
 
 				{% endif %}
 			</div>
@@ -118,46 +100,67 @@
 			<div id="right">
 				{% if currentUser["queue"][1] == False %}
 
-					<div class="post">
-						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
-						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
-						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
-					</div>
-
-					<div class="post">
-						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
-						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
-						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
-					</div>
-
-					<div class="post">
-						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
-						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
-						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
-					</div>
-
-					<div class="post">
-						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
-						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
-						<h3 class="post-reply"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
-					</div>
-
-					<!-- <form>
+					<form class="argument-form" action="{{ url_for('online') }}" method="post">
 						<div class="form-group">
-							<label style="font-size: 32px; font-weight: 600;">Post your argument:</label>
-							<textarea name="no-comment" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+							<label style="font-size: 32px; font-weight: 400;">Post your argument:</label>
+							<textarea name="argument" class="form-control" rows="3" style="font-size: 22px;"></textarea>
 						</div>
 						<button class="submit-button" type="submit"><a class="submit-link" style="color: white;">Post</a></button>
-					</form> -->
+					</form>
+
+					<div class="post" id="userPost">
+						<h3 class="post-author">You<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply" onclick="replyToPost(this)"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+						
+						<div class="reply-div">
+							<div class="make-reply">
+								<h2 class="reply-title">Reply to yourself</h2>
+								<div class="reply-form" style="text-align: center;">
+									<div class="form-group">
+										<textarea name="reply" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+									</div>
+									<button class="submit-button" type="submit" onclick="submitReply(this)"><a class="submit-link" style="color: white;">Post</a></button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
 				{% else %}
 
-					<br><br><br><br><br><br>
-					<h1 style="font-weight: 200;">Your opponent is posting their argument...</h1>
+					<h1 class="opponent-wait"><br><br><br>Your opponent is posting their argument...</h1>
+
+					<div class="post" id="opponentPost" style="display: none;">
+						<h3 class="post-author">{{ currentUser["queue"][4]["name"] }}<span class="post-time">8:52 AM</span></h3>
+						<h2 class="post-content">Bullfighting should be banned because it is a form of animal cruelty.</h2>
+						<h3 class="post-reply" onclick="replyToPost(this)"><i class="fas fa-reply" style="margin-right: 10px;"></i>Reply</h3>
+						
+						<div class="reply-div">
+							<div class="make-reply">
+								<h2 class="reply-title">Reply to {{ currentUser["queue"][4]["name"] }}</h2>
+								<div class="reply-form" style="text-align: center;">
+									<div class="form-group">
+										<textarea name="reply" class="form-control" rows="3" style="font-size: 22px;"></textarea>
+									</div>
+									<button class="submit-button" type="submit" onclick="submitReply(this)"><a class="submit-link" style="color: white;">Post</a></button>
+								</div>
+							</div>
+						</div>
+
+					</div>
 
 				{% endif %}
 			</div>
 
         </div>
+
+		<template>
+			<div class="reply">
+				<h3 class="reply-author">[Reply author]<span class="reply-time">lol the time</span></h3>
+				<h2 class="reply-content">[Reply content]</h2>
+			</div>
+		</template>
 
     </body>
 </html>

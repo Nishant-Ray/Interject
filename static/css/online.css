@@ -45,7 +45,7 @@
 
 #question-text {
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 800;
     font-family: 'Heebo', sans-serif;
     color: white;
 }
@@ -101,6 +101,10 @@
     font-weight: 700;
 }
 
+.opponent-wait {
+    font-weight: 200;
+}
+
 .post {
     width: 100%;
     text-align: left;
@@ -110,6 +114,14 @@
     border-radius: 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     transition: ease-in-out 0.2s;
+}
+
+#userPost { 
+    display: none;
+}
+
+#opponentPost {
+    display: none;
 }
 
 .post:hover {
@@ -151,11 +163,23 @@
     background-color: rgb(242, 242, 242);
     margin-left: -40px;
     margin-right: -40px;
-    margin-bottom: -30px;
+
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 0px;
+
+    /* margin-bottom: -30px;
     margin-top: 20px;
-    padding: 30px 40px;
+    padding: 30px 40px; */
+
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.make-reply {
+    border-top: 1px solid gray;
+    padding-top: 20px;
+    display: none;
 }
 
 .reply-title {

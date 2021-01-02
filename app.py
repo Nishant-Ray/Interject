@@ -12,7 +12,7 @@ admin = {
     "password": "hello123",
     "name": "Jane Doe",
     "dob": "1990-08-24",
-    "queue": ["", False, False, False, None],
+    "queue": ["", False, False, False, None, ""],
     "xp": 0,
     "rank": "Amateur"
 }
@@ -22,7 +22,7 @@ user1 = {
     "password": "hello123",
     "name": "Kevin Lewis",
     "dob": "1990-01-01",
-    "queue": ["", False, False, False, None],
+    "queue": ["", False, False, False, None, ""],
     "xp": 0,
     "rank": "Amateur"
 }
@@ -81,7 +81,7 @@ def register():
             "password": request.form["pw"],
             "name": request.form["nm"],
             "dob": request.form["dob"],
-            "queue": ["", False, False, False, None],
+            "queue": ["", False, False, False, None, ""],
             "xp": 0,
             "rank": "Amateur"
         }
@@ -134,7 +134,7 @@ def question(mode, q):
 
         question += "?"
 
-        queue = [question, True, False, False, None] # question, side, isQueueing, inGame, opponent
+        queue = [question, True, False, False, None, ""] # question, side, isQueueing, inGame, opponent, argument
 
         session["currentUser"]["queue"] = queue
         updateCurrentUser()
@@ -179,12 +179,22 @@ def findplayer(side, q):
 
         return render_template("findplayer.html")
 
-@app.route("/online")
+@app.route("/online", methods=["POST", "GET"])
 def online():
     global users
 
     if "currentUser" not in session:
         return redirect(url_for('login'))
+
+    elif request.method == "POST":
+        restoreCurrentUser()
+        session["currentUser"]["queue"][5] = request.form["argument"]
+        updateCurrentUser()
+        
+        opponentArg = getCounterArg() #session["currentUser"]["queue"][4]["queue"][5]
+        print("opponent: " + opponentArg)
+
+        return render_template("online.html", argument=session["currentUser"]["queue"][5], counterArg=opponentArg, oppName=session["currentUser"]["queue"][4]["name"])
     else:
         restoreCurrentUser()
 
@@ -201,6 +211,7 @@ def online():
         
         #print(opponent["queue"])
         updateCurrentUser()
+
         return render_template("online.html")
 
 @app.route("/offline:<side>:<q>")
@@ -265,8 +276,14 @@ def opponentFound():
         for i in range(len(users)):
             if users[i]["queue"][4] is not None and users[i]["queue"][4]["email"] == session["currentUser"]["email"]:
                 return True
-
     return False
+
+def getCounterArg():
+    if "currentUser" in session:
+        for i in range(len(users)):
+            if users[i]["email"] == session["currentUser"]["queue"][4]["email"]:
+                return users[i]["queue"][5]
+    return ""
 
 if __name__ == "__main__":
     app.run(debug=True)
